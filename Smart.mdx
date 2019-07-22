@@ -1,0 +1,437 @@
+import { CodeSurferLayout } from 'code-surfer'
+
+# Smart example
+
+---
+
+<CodeSurferLayout>
+
+```js  title="A simple dumb components example"
+import * as React from 'react'
+import Button from './Button'
+import TextInput from './TextInput'
+
+class Store extends React.Component{
+
+  render(){
+    return (
+      <React.Fragment>
+        <h1>Something something</h1>
+        <TextInput {...props}/>
+        <TextInput {...props}/>
+        <TextInput {...props}/>
+        <Button text={"Click me bro"} onClick={onClick}/>
+      </React.Fragment>
+    )
+  }
+}
+
+```
+
+```js 7:16  title="A simple dumb components example"
+import * as React from 'react'
+import Button from './Button'
+import TextInput from './TextInput'
+
+class Store extends React.Component{
+
+  state={
+    data:[]
+  }
+
+  async componentDidMount(){
+    const response = await fetchingSomething()
+    this.setState({
+      data:response
+    })
+  }
+
+  render(){
+    return (
+      <React.Fragment>
+        <h1>Something something</h1>
+        <TextInput {...props}/>
+        <TextInput {...props}/>
+        <TextInput {...props}/>
+        <Button text={"Click me bro"} onClick={onClick}/>
+      </React.Fragment>
+    )
+  }
+}
+
+```
+
+```js 18:20  title="A simple dumb components example"
+import * as React from 'react'
+import Button from './Button'
+import TextInput from './TextInput'
+
+class Store extends React.Component{
+
+  state={
+    data:[]
+  }
+
+  async componentDidMount(){
+    const response = await fetchingSomething()
+    this.setState({
+      data:response
+    })
+  }
+
+  componentWillUnMount(){
+    // something
+  }
+
+  render(){
+    return (
+      <React.Fragment>
+        <h1>Something something</h1>
+        <TextInput {...props}/>
+        <TextInput {...props}/>
+        <TextInput {...props}/>
+        <Button text={"Click me bro"} onClick={onClick}/>
+      </React.Fragment>
+    )
+  }
+}
+
+```
+
+```js 22:27  title="A simple dumb components example"
+import * as React from 'react'
+import Button from './Button'
+import TextInput from './TextInput'
+
+class Store extends React.Component{
+
+  state={
+    data:[]
+  }
+
+  async componentDidMount(){
+    const response = await fetchingSomething()
+    this.setState({
+      data:response
+    })
+  }
+
+  componentWillUnMount(){
+    // something
+  }
+
+  const renderFormFirst = () => (
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <Button text={"Click me bro"} onClick={onClick}/>
+  )
+
+  render(){
+    return (
+      <React.Fragment>
+        <h1>Something something</h1>
+      </React.Fragment>
+    )
+  }
+}
+
+```
+
+```js 33:33  title="A simple dumb components example"
+import * as React from 'react'
+import Button from './Button'
+import TextInput from './TextInput'
+
+class Store extends React.Component{
+
+  state={
+    data:[]
+  }
+
+  async componentDidMount(){
+    const response = await fetchingSomething()
+    this.setState({
+      data:response
+    })
+  }
+
+  componentWillUnMount(){
+    // something
+  }
+
+  const renderFormFirst = () => (
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <Button text={"Click me bro"} onClick={onClick}/>
+  )
+
+  render(){
+    return (
+      <React.Fragment>
+        <h1>Something something</h1>
+        {this.renderFormFirst()}
+      </React.Fragment>
+    )
+  }
+}
+
+```
+
+```js 29:34,41:41  title="A simple dumb components example"
+import * as React from 'react'
+import Button from './Button'
+import TextInput from './TextInput'
+
+class Store extends React.Component{
+
+  state={
+    data:[]
+  }
+
+  async componentDidMount(){
+    const response = await fetchingSomething()
+    this.setState({
+      data:response
+    })
+  }
+
+  componentWillUnMount(){
+    // something
+  }
+
+  const renderFormFirst = () => (
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <Button text={"Click me bro"} onClick={onClick}/>//27
+  )
+
+  const renderFormSecond = () => (
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <Button text={"Click me bro"} onClick={onClick}/>//34
+  )
+
+  render(){
+    return (
+      <React.Fragment>
+        <h1>Something something</h1>
+        {this.renderFormFirst()}
+        {this.renderFormSecond()}
+      </React.Fragment>
+    )
+  }
+}
+
+```
+
+```js 21:34  title="A simple dumb components example"
+import * as React from 'react'
+import Button from './Button'
+import TextInput from './TextInput'
+
+class Store extends React.Component{
+
+  state={
+    data:[]
+  }
+
+  async componentDidMount(){
+    const response = await fetchingSomething()
+    this.setState({
+      data:response
+    })
+  }
+
+  componentWillUnMount(){
+    // something
+  }
+
+  const renderFormFirst = () => (
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <Button text={"Click me bro"} onClick={onClick}/>//27
+  )
+
+  const renderFormSecond = () => (
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <Button text={"Click me bro"} onClick={onClick}/>
+  )//34
+
+  render(){
+    return (
+      <React.Fragment>
+        <h1>Something something</h1>
+        {this.renderFormFirst()}
+        {this.renderFormSecond()}
+      </React.Fragment>
+    )
+  }
+}
+
+```
+
+```js 20:24,30:30,32:35,41:41  title="A simple dumb components example"
+import * as React from 'react'
+import Button from './Button'
+import TextInput from './TextInput'
+
+class Store extends React.Component{
+
+  state={
+    data:[]
+  }
+
+  async componentDidMount(){
+    const response = await fetchingSomething()
+    this.setState({
+      data:response
+    })
+  }
+
+  componentWillUnMount(){
+    // something
+  }
+
+  onClickFormFirst = () => {
+    //something
+  }
+
+  renderFormFirst = () => (
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <Button text={"Click me bro"} onClick={onClickFormFirst}/>//27
+  )
+
+  onClickFormSecond = () => {
+    //something
+  }
+
+  renderFormSecond = () => (
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <TextInput {...props}/>
+    <Button text={"Click me bro"} onClick={onClickFormSecond}/>
+  )//34
+
+  render(){
+    return (
+      <React.Fragment>
+        <h1>Something something</h1>
+        {this.renderFormFirst()}
+        {this.renderFormSecond()}
+      </React.Fragment>
+    )
+  }
+}
+
+```
+
+```js  title="A simple dumb components example"
+import * as React from "react";
+import { bindActionCreators, Action } from "redux";
+import { connect, Dispatch } from "react-redux";
+import {
+  AkDynamicTableStateless as DynamicTable,
+  AkDropdownMenu as DropdownMenu,
+  AkDropdownItemGroup as DropdownItemGroup,
+  AkDropdownItem as DropdownItem,
+  Card,
+  Tooltip,
+  PermissionsCheckList,
+} from "~/components/common-components";
+import { BackupStore, Store, StoresState, storeActionType } from "@packages/model/stores";
+import * as StoreActions from "@packages/stores/actions/StoreActions";
+import { translation } from "~/i18n";
+import CreateStoreModal from "../CreateStoreModal";
+import history from "~/utils/history";
+import DeleteStoreModal from "../DeleteStoreModal";
+import EditStoreModal from "../EditStoreModal";
+import CloneStoreModal from "../CloneStoreModal";
+import ImportStoreModal from "./StoreActionModal/ImportStoreModal";
+import PublishStoreModal from "../PublishStoreModal";
+import { StoreSchema } from "~/models/Stores";
+import { formatDateForDetailedDisplay } from "~/components/common-components/utils/utils";
+import RollbackStoreModal from "@packages/stores/Action/Rollback";
+
+interface Props {
+  stores: StoreSchema[];
+  StoreActions: typeof StoreActions;
+  backupStore: BackupStore;
+}
+interface State {
+  isCreateStoreModalOpen: boolean;
+  isDeleteStoreModalOpen: boolean;
+  isEditStoreModalOpen: boolean;
+  isCloneStoreModalOpen: boolean;
+  isImportStoreModalOpen: boolean;
+  isPublishStoreModalOpen: boolean;
+  isRollbackStoreModalOpen: boolean;
+  oneStore: StoreSchema;
+  isLoadingBackup: boolean;
+  isRollingBack: boolean;
+}
+
+class StoresPage extends React.Component<Props, State> {
+   constructor(props: Props) {
+     super(props);
+     this.state = {
+       isCreateStoreModalOpen: false,
+       isDeleteStoreModalOpen: false,
+       isEditStoreModalOpen: false,
+       isCloneStoreModalOpen: false,
+       isImportStoreModalOpen: false,
+       isPublishStoreModalOpen: false,
+       isRollbackStoreModalOpen: false,
+       oneStore: new Store(),
+       isLoadingBackup: false,
+       isRollingBack: false,
+     };
+   }
+
+   render() {
+       const { stores } = this.props;
+       const {
+         storePermissions: { adminCanReadStore },
+       } = PermissionsCheckList;
+       return (
+         <div className="page-content-wrap">
+           <Card
+             noPadding={true}
+             noMarginHorizontal={true}
+             cardTitle={translation("stores.published")}
+             isAuthorized={adminCanReadStore()}
+           >
+             <div className="styled-atlaskit-table">
+               {!stores.filter((store: StoreSchema) => store.published).length ? (
+                 <div className="empty-list-wrap">
+                   <p>{translation("stores.empty")}</p>
+                 </div>
+               ) : (
+                 <DynamicTable head={this.getTableHead()} rows={this.getTableRows({ published: true })} />
+               )}
+             </div>
+           </Card>
+           {this.renderDraftStore(stores)}
+           {this.renderCreateStoreModal()}
+           {this.renderDeleteStoreModal()}
+           {this.renderEditStoreModal()}
+           {this.renderCloneStoreModal()}
+           {this.renderPublishStoreModal()}
+           {this.renderImportStoreModal()}
+           {this.renderRollbackStoreModal()}
+         </div>
+       );
+     }
+}
+
+```
+
+</CodeSurferLayout>

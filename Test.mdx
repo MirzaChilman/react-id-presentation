@@ -1,0 +1,139 @@
+import { CodeSurferLayout } from 'code-surfer'
+
+# Testing
+
+---
+
+<CodeSurferLayout>
+
+```js title="Test"
+import { LogicPage } from "./LogicPage";
+
+let logic: LogicPage;
+beforeEach(() => {
+  logic = new LogicPage({ userId: "userId" });
+});
+
+it("init state", () => {
+  expect(logic.state.isFetching).toBe(false);
+  expect(logic.state.isUpdating).toBe(false);
+  expect(logic.state.isUpdateSuccess).toBe(false);
+  // Function to fetch something
+  expect(logic.state.initError).toBe(null);
+  expect(logic.state.updateError).toBe(null);
+});
+```
+
+```js title="Test"
+import { LogicPage } from "./LogicPage";
+
+let logic: LogicPage;
+beforeEach(() => {
+  logic = new LogicPage({ userId: "userId" });
+});
+
+it("init state", () => {
+  expect(logic.state.isFetching).toBe(false);
+  expect(logic.state.isUpdating).toBe(false);
+  expect(logic.state.isUpdateSuccess).toBe(false);
+  // Function to fetch something
+  expect(logic.state.initError).toBe(null);
+  expect(logic.state.updateError).toBe(null);
+});
+
+it("fetch state", async () => {
+
+    logic.init();
+
+    await sleepAsync(1);
+    expect(logic.state.isFetching).toBe(true);
+    unhold();
+  });
+```
+
+```js title="Test"
+import { LogicPage } from "./LogicPage";
+
+let logic: LogicPage;
+beforeEach(() => {
+  logic = new LogicPage({ userId: "userId" });
+});
+
+it("init state", () => {
+  expect(logic.state.isFetching).toBe(false);
+  expect(logic.state.isUpdating).toBe(false);
+  expect(logic.state.isUpdateSuccess).toBe(false);
+  // Function to fetch something
+  expect(logic.state.initError).toBe(null);
+  expect(logic.state.updateError).toBe(null);
+});
+
+it("fetch state", async () => {
+
+    logic.init();
+
+    await sleepAsync(1);
+    expect(logic.state.isFetching).toBe(true);
+    unhold();
+  });
+
+  it("ready state", async () => {
+
+      await logic.init();
+
+      expect(logic.state.isFetching).toBe(false);
+      // Function to fetch something
+      expect(logic.state.initError).toBe(null);
+    });
+```
+
+```js title="Test"
+import { LogicPage } from "./LogicPage";
+
+let logic: LogicPage;
+beforeEach(() => {
+  logic = new LogicPage({ userId: "userId" });
+});
+
+it("init state", () => {
+  expect(logic.state.isFetching).toBe(false);
+  expect(logic.state.isUpdating).toBe(false);
+  expect(logic.state.isUpdateSuccess).toBe(false);
+  // Function to fetch something
+  expect(logic.state.initError).toBe(null);
+  expect(logic.state.updateError).toBe(null);
+});
+
+it("fetch state", async () => {
+
+    logic.init();
+
+    await sleepAsync(1);
+    expect(logic.state.isFetching).toBe(true);
+    unhold();
+  });
+
+  it("ready state", async () => {
+
+      await logic.init();
+
+      expect(logic.state.isFetching).toBe(false);
+      // Function to fetch something
+      expect(logic.state.initError).toBe(null);
+    });
+
+    it("error state", async () => {
+      const error = new Error();
+      // do something when error
+
+      await logic.init();
+
+      expect(logic.state.isFetching).toBe(false);
+      // Function to fetch something
+      expect(logic.state.initError).toBe(error);
+    });
+```
+
+</CodeSurferLayout>
+
+---

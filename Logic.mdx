@@ -1,0 +1,302 @@
+import { CodeSurferLayout } from 'code-surfer'
+
+# Logic Container
+
+---
+
+<CodeSurferLayout>
+
+```js title="COPYRIGHT"
+/*
+ * Copyright (c) 2019 AccelByte Inc. All Rights Reserved
+ */
+```
+
+```js 1:5 title="LogicPage.tsx"
+import networkManager from "src/client/api/network";
+import { fetchCurrentUser, updateSomething } from "src/client/api/user/user";
+import InitialLogic from "src/client/utils/InitialLogic";
+import { InitEventBase } from "../../../../app-events/base";
+import { SocialLogic } from "../SocialLogic";
+
+```
+
+```js 3,5 title="LogicPage.tsx"
+import networkManager from "src/client/api/network";
+import { fetchCurrentUser, updateSomething } from "src/client/api/user/user";
+import InitialLogic from "src/client/utils/InitialLogic";
+import { InitEventBase } from "../../../../app-events/base";
+import { SocialLogic } from "../SocialLogic";
+
+```
+
+```js 7:9 title="LogicPage.tsx"
+import networkManager from "src/client/api/network";
+import { fetchCurrentUser, updateSomething } from "src/client/api/user/user";
+import InitialLogic from "src/client/utils/InitialLogic";
+import { InitEventBase } from "../../../../app-events/base";
+import { SocialLogic } from "../SocialLogic";
+
+interface Props {
+  userId: string;
+}
+
+```
+
+```js 11:17 title="LogicPage.tsx"
+import networkManager from "src/client/api/network";
+import { fetchCurrentUser, updateSomething } from "src/client/api/user/user";
+import InitialLogic from "src/client/utils/InitialLogic";
+import { InitEventBase } from "../../../../app-events/base";
+import { SocialLogic } from "../SocialLogic";
+
+interface Props {
+  userId: string;
+}
+
+interface State {
+  isFetching: boolean;
+  isUpdating: boolean;
+  isUpdateSuccess: boolean;
+  initError: Error | null;
+  updateError: Error | null;
+}
+
+```
+
+```js 19:20 title="LogicPage.tsx"
+import networkManager from "src/client/api/network";
+import { fetchCurrentUser, updateSomething } from "src/client/api/user/user";
+import InitialLogic from "src/client/utils/InitialLogic";
+import { InitEventBase } from "../../../../app-events/base";
+import { SocialLogic } from "../SocialLogic";
+
+interface Props {
+  userId: string;
+}
+
+interface State {
+  isFetching: boolean;
+  isUpdating: boolean;
+  isUpdateSuccess: boolean;
+  initError: Error | null;
+  updateError: Error | null;
+}
+
+export class ProfilePageLogic extends InitialLogic<State> {
+  //
+}
+
+```
+
+```js 19:22 title="LogicPage.tsx"
+import networkManager from "src/client/api/network";
+import { fetchCurrentUser, updateSomething } from "src/client/api/user/user";
+import InitialLogic from "src/client/utils/InitialLogic";
+import { InitEventBase } from "../../../../app-events/base";
+import { SocialLogic } from "../SocialLogic";
+
+interface Props {
+  userId: string;
+}
+
+interface State {
+  isFetching: boolean;
+  isUpdating: boolean;
+  isUpdateSuccess: boolean;
+  initError: Error | null;
+  updateError: Error | null;
+}
+
+export class ProfilePageLogic extends InitialLogic<State> {
+  socialLogic: SocialLogic;
+  props: Props;
+}
+
+```
+
+```js 22:40 title="LogicPage.tsx"
+import networkManager from "src/client/api/network";
+import { fetchCurrentUser, updateSomething } from "src/client/api/user/user";
+import InitialLogic from "src/client/utils/InitialLogic";
+import { InitEventBase } from "../../../../app-events/base";
+import { SocialLogic } from "../SocialLogic";
+
+interface Props {
+  userId: string;
+}
+
+interface State {
+  isFetching: boolean;
+  isUpdating: boolean;
+  isUpdateSuccess: boolean;
+  initError: Error | null;
+  updateError: Error | null;
+}
+
+export class ProfilePageLogic extends InitialLogic<State> {
+  socialLogic: SocialLogic;
+  props: Props;
+
+  constructor(props: Props) {
+      super();
+      this.props = props;
+      this.event = new ProfilePageLogicEvent();
+
+      this.socialLogic = new SocialLogic();
+      this.socialLogic.subscribe(() => this.setState({}));
+      this.state = {
+        isFetching: false,
+        isUpdating: false,
+        isUpdateSuccess: false,
+        initError: null,
+        updateError: null,
+      };
+    }
+
+}
+
+```
+
+```js 1:30 title="LogicPage.tsx"
+async init() {
+    try {
+      if (this.state.isFetching) return;
+
+      this.setState({
+        isFetching: true,
+        initError: null,
+      });
+
+      await this.socialLogic.init();
+
+      if (this.socialLogic.state.error) {
+        throw this.socialLogic.state.error;
+      }
+    } catch (initError) {
+      this.setState({ initError });
+    } finally {
+      await this.setState({ isFetching: false });
+    }
+  }
+
+```
+
+```js 1:40 title="LogicPage.tsx"
+async updateSomethingProfile(displayName: string, selectedSocial: string, selectedDateOfBirth: string) {
+  try {
+    if (this.state.isUpdating) return;
+
+    this.setState({ isUpdating: true, updateError: null, isUpdateSuccess: false });
+
+    const network = //
+
+    const user = await fetchSomething(network).then((result) => {
+      if (result.error) throw result.error;
+      return result.response.data;
+    });
+
+    const social = //
+
+    await updateSomething(params).then((result) => {
+      if (result.error) throw result.error;
+      return result.response.data;
+    });
+
+    await this.setState({ isUpdateSuccess: true });
+
+    user.Social !== selectedSocial && this.event.logout();
+  } catch (updateError) {
+    this.setState({ updateError });
+  } finally {
+    await this.setState({ isUpdating: false });
+  }
+}
+
+```
+
+```js 1:40 title="LogicPage.tsx"
+async updateSomethingProfile(displayName: string, selectedSocial: string, selectedDateOfBirth: string) {
+  try {
+    if (this.state.isUpdating) return;
+
+    this.setState({ isUpdating: true, updateError: null, isUpdateSuccess: false });
+
+    const network = //
+
+    const user = await fetchSomething(network).then((result) => {
+      if (result.error) throw result.error;
+      return result.response.data;
+    });
+
+    const social = //
+
+    await updateSomething(params).then((result) => {
+      if (result.error) throw result.error;
+      return result.response.data;
+    });
+
+    await this.setState({ isUpdateSuccess: true });
+
+    user.Social !== selectedSocial && this.event.logout();
+  } catch (updateError) {
+    this.setState({ updateError });
+  } finally {
+    await this.setState({ isUpdating: false });
+  }
+}
+
+clearUpdateStatus() {
+  this.setState({ isUpdateSuccess: false });
+}
+
+clearUpdateError() {
+  this.setState({ updateError: null });
+}
+
+```
+
+```js 3,5,10:11,17:18,20,25,27,32,36 title="LogicPage.tsx"
+async updateSomethingProfile(displayName: string, selectedSocial: string, selectedDateOfBirth: string) {
+  try {
+    if (this.state.isUpdating) return;
+
+    this.setState({ isUpdating: true, updateError: null, isUpdateSuccess: false });
+
+    const network = //
+
+    const user = await fetchSomething(network).then((result) => {
+      if (result.error) throw result.error;
+      return result.response.data;
+    });
+
+    const social = //
+
+    await updateSomething(params).then((result) => {
+      if (result.error) throw result.error;
+      return result.response.data;
+    });
+
+    await this.setState({ isUpdateSuccess: true });
+
+    user.Social !== selectedSocial && this.event.logout();
+  } catch (updateError) {
+    this.setState({ updateError });
+  } finally {
+    await this.setState({ isUpdating: false });
+  }
+}
+
+clearUpdateStatus() {
+  this.setState({ isUpdateSuccess: false });
+}
+
+clearUpdateError() {
+  this.setState({ updateError: null });
+}
+
+```
+
+</CodeSurferLayout>
+
+---

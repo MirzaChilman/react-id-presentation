@@ -1,0 +1,167 @@
+import { CodeSurferLayout } from 'code-surfer'
+
+# profile Container
+
+---
+
+<CodeSurferLayout>
+
+```js title="profile Container"
+import * as React from 'react'
+import Subscribe from 'unstated'
+import { LogicPage } from './LogicPage'
+
+```
+
+```js 13:15 title="profile Container"
+import * as React from 'react'
+import Subscribe from 'unstated'
+import { LogicPage } from './LogicPage'
+
+interface Props {
+  //
+}
+
+interface State {
+  //
+}
+
+class Profile extends React.Component<Props, State>{
+  componentLogicPage: LogicPage
+}
+
+```
+
+```js 19:27 title="profile Container"
+import * as React from 'react'
+import Subscribe from 'unstated'
+import { LogicPage } from './LogicPage'
+
+interface Props {
+  user: User
+}
+
+interface State {
+  //
+}
+
+class Profile extends React.Component<Props, State>{
+  componentLogicPage: LogicPage
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      // from your input
+    };
+
+    const { user } = props
+    const { userId } = user
+
+    this.componentLogicPage = new LogicPage({ userId });
+    this.componentLogicPage.subscribe(() => this.setState({}));
+  }
+}
+
+```
+
+```js 27:36 title="profile Container"
+import * as React from 'react'
+import Subscribe from 'unstated'
+import { LogicPage } from './LogicPage'
+
+interface Props {
+  user: User
+}
+
+interface State {
+  //
+}
+
+class Profile extends React.Component<Props, State>{
+  componentLogicPage: LogicPage
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      // from your input
+    };
+
+    const { user } = props
+    const { userId } = user
+
+    this.componentLogicPage = new LogicPage({ userId });
+    this.componentLogicPage.subscribe(() => this.setState({}));
+  }
+
+  componentDidMount() {
+    this.componentLogicPage.init();
+    this.componentLogicPage.event.subscribe("logout", () => userEvent.logout());
+  }
+
+  componentWillUnmount() {
+    this.componentLogicPage.deinit();
+  }
+}
+
+```
+
+```js 40:52 title="profile Container"
+import * as React from 'react'
+import Subscribe from 'unstated'
+import { LogicPage } from './LogicPage'
+
+interface Props {
+  user: User
+}
+
+interface State {
+  //
+}
+
+class Profile extends React.Component<Props, State>{
+  componentLogicPage: LogicPage
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      // from your input
+    };
+
+    const { user } = props
+    const { userId } = user
+
+    this.componentLogicPage = new LogicPage({ userId });
+    this.componentLogicPage.subscribe(() => this.setState({}));
+  }
+
+  componentDidMount() {
+      this.componentLogicPage.init();
+      this.componentLogicPage.event.subscribe("logout", () => userEvent.logout());
+    }
+
+    componentWillUnmount() {
+      this.componentLogicPage.deinit();
+    }
+
+    render(){
+      return (
+        // something
+      )
+    }
+
+    export default () => (
+      <Subscribe to={[UserSessionApi]}>
+        {(userSession: UserSessionApi) => {
+          const { user } = userSession.state;
+          if (!user) return;
+          return <Profile user={user} userSession={userSession} />;
+        }}
+      </Subscribe>
+    );
+}
+
+```
+
+</CodeSurferLayout>
+
+---

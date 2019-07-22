@@ -1,0 +1,47 @@
+import { CodeSurferLayout } from 'code-surfer'
+
+# Dumb example
+
+---
+
+<CodeSurferLayout>
+
+```js 1:1 title="A simple dumb components example"
+import { default as classnames } from 'classnames'
+
+```
+
+```js 2:2,4:6 title="A simple dumb components example"
+import { default as classnames } from 'classnames'
+import { default as Styles } from 'styles'
+
+```
+
+```js 4:8 title="A simple dumb components example"
+import { default as classnames } from 'classnames'
+import { default as Styles } from 'styles'
+
+interface Props {
+  text:string;
+  styles: string;
+  onClick: () => void
+}
+```
+
+```js 10:14 title="A simple dumb components example"
+import { default as classnames } from 'classnames'
+import { default as Styles } from 'styles'
+
+interface Props {
+  text:string;
+  styles: string;
+  onClick: () => void
+}
+
+const Button = ({text, styles, onClick}): Props => (
+  <button style={styles} onClick={onClick}>
+  {text}
+  </button>
+)
+```
+</CodeSurferLayout>
